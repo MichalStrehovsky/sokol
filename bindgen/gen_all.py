@@ -1,4 +1,4 @@
-import os, gen_nim, gen_zig
+import os, gen_csharp, gen_nim, gen_zig
 
 tasks = [
     [ '../sokol_gfx.h',            'sg_',       [] ],
@@ -10,18 +10,26 @@ tasks = [
     [ '../util/sokol_shape.h',     'sshape_',   ['sg_'] ],
 ]
 
-# Nim
-gen_nim.prepare()
+# C#
+gen_csharp.prepare()
 for task in tasks:
     c_header_path = task[0]
     main_prefix = task[1]
     dep_prefixes = task[2]
-    gen_nim.gen(c_header_path, main_prefix, dep_prefixes)
+    gen_csharp.gen(c_header_path, main_prefix, dep_prefixes)
+
+# Nim
+#gen_nim.prepare()
+#for task in tasks:
+#    c_header_path = task[0]
+#    main_prefix = task[1]
+#    dep_prefixes = task[2]
+#    gen_nim.gen(c_header_path, main_prefix, dep_prefixes)
 
 # Zig
-gen_zig.prepare()
-for task in tasks:
-    c_header_path = task[0]
-    main_prefix = task[1]
-    dep_prefixes = task[2]
-    gen_zig.gen(c_header_path, main_prefix, dep_prefixes)
+#gen_zig.prepare()
+#for task in tasks:
+#    c_header_path = task[0]
+#    main_prefix = task[1]
+#    dep_prefixes = task[2]
+#    gen_zig.gen(c_header_path, main_prefix, dep_prefixes)
